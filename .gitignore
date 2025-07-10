@@ -11,8 +11,8 @@ pids
 *.pid
 
 # dotenv files
-.env
+
 
 # Build
-dist/
+
 build/
