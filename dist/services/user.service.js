@@ -17,7 +17,6 @@ const data_source_1 = require("../config/data-source");
 const User_1 = require("../entities/User");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const env_1 = require("../config/env");
 class UserService {
     constructor() {
         this.userRepository = data_source_1.AppDataSource.getRepository(User_1.User);
@@ -44,7 +43,11 @@ class UserService {
             const isMatch = yield bcrypt_1.default.compare(credentials.password, user.password);
             if (!isMatch)
                 throw new Error('Invalid email or password');
-            const token = jsonwebtoken_1.default.sign({ id: user.id, email: user.email }, env_1.config.JWT_SECRET, { expiresIn: '1h' });
+            const JWT_SECRET = process.env.JWT_SECRET;
+            if (!JWT_SECRET) {
+                throw new Error("JWT_SECRET is not defined in environment variables.");
+            }
+            const token = jsonwebtoken_1.default.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
             return token;
         });
     }

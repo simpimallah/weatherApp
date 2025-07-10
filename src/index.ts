@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { AppDataSource } from './config/data-source';
-import { config } from './config/env';
+
 import authRoutes from './routes/auth.routes';
 import weatherRoutes from './routes/weather.routes';
 

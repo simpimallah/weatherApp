@@ -4,6 +4,8 @@ import { DataSource } from 'typeorm';
 // import { User } from '../entities/User';
 // import { City } from '../entities/City';
 // import { WeatherHistory } from '../entities/WeatherHistory';
+import dotenv from 'dotenv';
+dotenv.config();
 
 export const AppDataSource = new DataSource({
  type: 'postgres',

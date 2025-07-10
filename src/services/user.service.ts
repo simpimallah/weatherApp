@@ -2,7 +2,7 @@ import { AppDataSource } from '../config/data-source';
 import { User } from '../entities/User';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { config } from '../config/env';
+
 
 export class UserService {
   private userRepository = AppDataSource.getRepository(User);
@@ -29,9 +29,14 @@ export class UserService {
     const isMatch = await bcrypt.compare(credentials.password, user.password);
     if (!isMatch) throw new Error('Invalid email or password');
 
+    const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+  throw new Error("JWT_SECRET is not defined in environment variables.");
+}
     const token = jwt.sign(
       { id: user.id, email: user.email },
-      config.JWT_SECRET,
+      JWT_SECRET,
       { expiresIn: '1h' }
     );
 
