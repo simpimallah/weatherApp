@@ -17,7 +17,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  synchronize: true, // ⚠️ disable in production
+  synchronize: false, // ⚠️ disable in production
   logging: false,
   entities: [City,User,WeatherHistory], // adjust if needed
 
