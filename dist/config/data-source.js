@@ -11,6 +11,9 @@ const typeorm_1 = require("typeorm");
 // import { City } from '../entities/City';
 // import { WeatherHistory } from '../entities/WeatherHistory';
 const dotenv_1 = __importDefault(require("dotenv"));
+const City_1 = require("../entities/City");
+const User_1 = require("../entities/User");
+const WeatherHistory_1 = require("../entities/WeatherHistory");
 dotenv_1.default.config();
 exports.AppDataSource = new typeorm_1.DataSource({
     type: 'postgres',
@@ -19,9 +22,7 @@ exports.AppDataSource = new typeorm_1.DataSource({
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    synchronize: true, // ⚠️ disable in production
-    logging: true,
-    entities: ['dist/entities/*.js'], // adjust if needed
-    migrations: ['dist/migrations/*.js'],
-    subscribers: [],
+    synchronize: false, // ⚠️ disable in production
+    logging: false,
+    entities: [City_1.City, User_1.User, WeatherHistory_1.WeatherHistory], // adjust if needed
 });

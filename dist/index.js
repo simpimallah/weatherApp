@@ -15,6 +15,9 @@ app.use(express_1.default.json());
 // Routes
 app.use('/api/auth', auth_routes_1.default);
 app.use('/api/weather', weather_routes_1.default);
+app.get('/', (_req, res) => {
+    res.send('Backend is running 🚀');
+});
 // Database Connection
 data_source_1.AppDataSource.initialize()
     .then(() => {
