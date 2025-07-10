@@ -5,6 +5,9 @@ import { DataSource } from 'typeorm';
 // import { City } from '../entities/City';
 // import { WeatherHistory } from '../entities/WeatherHistory';
 import dotenv from 'dotenv';
+import { City } from '../entities/City';
+import { User } from '../entities/User';
+import { WeatherHistory } from '../entities/WeatherHistory';
 dotenv.config();
 
 export const AppDataSource = new DataSource({
@@ -15,8 +18,7 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   synchronize: true, // ⚠️ disable in production
-  logging: true,
-  entities: ['dist/entities/*.js'], // adjust if needed
-  migrations: ['dist/migrations/*.js'],
-  subscribers: [],
+  logging: false,
+  entities: [City,User,WeatherHistory], // adjust if needed
+
 });
