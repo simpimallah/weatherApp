@@ -19,8 +19,8 @@ app.use('/api/weather', weatherRoutes);
 AppDataSource.initialize()
   .then(() => {
     console.log('✅ Database connected');
-    app.listen(config.PORT, () => {
-      console.log(`🚀 Server running at http://localhost:${config.PORT}`);
+    app.listen(process.env.PORT, () => {
+      console.log(`🚀 Server running at http://localhost:${process.env.PORT}`);
     });
   })
   .catch((err) => {
