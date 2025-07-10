@@ -1,12 +1,13 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start":"node dist/index.ts",
     "build": "tsc",
-    "dev":"nodemon src/index.ts"
+    "dev":"nodemon --watch src --exec ts-node-dev src/index.ts",
+    "typeorm": "typeorm-ts-node-commonjs"
   },
   "keywords": [],
   "author": "",
